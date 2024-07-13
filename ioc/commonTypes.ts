@@ -2,4 +2,5 @@
 export const COMMON_TYPES = {
     ILogger: Symbol.for("ILogger"),
     IFunctionService: Symbol.for("IFunctionService"),
+    IPokemonApiService: Symbol.for("IPokemonApiService")
 };

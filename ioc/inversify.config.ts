@@ -4,6 +4,8 @@ import {Logger} from "../commonServices/Logger";
 import {ILogger} from "../commonServices/ILogger";
 import {IFunctionService} from "../HttpTrigger/services/IFunctionService";
 import {FunctionService} from "../HttpTrigger/services/FunctionService";
+import {IPokemonApiService} from "../HttpTrigger/services/pokemon/IPokemonApiService";
+import {PokemonApiService} from "../HttpTrigger/services/pokemon/PokemonApiService";
 import {COMMON_TYPES} from "./commonTypes";
 
 const getContainer: (() => Container) = (): Container => {
@@ -17,6 +19,10 @@ const getContainer: (() => Container) = (): Container => {
     container
         .bind<IFunctionService<any>>(COMMON_TYPES.IFunctionService)
         .to(FunctionService);
+
+    container
+        .bind<IPokemonApiService>(COMMON_TYPES.IPokemonApiService)
+        .to(PokemonApiService);
 
     return container;
 };
