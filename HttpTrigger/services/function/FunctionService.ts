@@ -7,8 +7,6 @@ import {PokemonApiService} from "../pokemon/PokemonApiService";
 import {PokemonData} from "../pokemon/PokemonApiServiceTypes";
 import {IFunctionService} from "./IFunctionService";
 
-
-
 @injectable()
 export class FunctionService implements IFunctionService<any> {
 

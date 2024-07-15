@@ -6,6 +6,7 @@ import {Logger} from "../commonServices/Logger";
 import {ILogger} from "../commonServices/ILogger";
 import {IFunctionService} from "./services/function/IFunctionService";
 import {HttpResponse, ProcessedMessage} from "./types/apiTypes";
+import {parseQueryIds} from "./utils/queryUtils";
 
 const httpTrigger: AzureFunction = async (ctx: Context, req: HttpRequest): Promise<HttpResponse> => {
     const container: Container = getContainer();
@@ -15,7 +16,7 @@ const httpTrigger: AzureFunction = async (ctx: Context, req: HttpRequest): Promi
     const functionService: IFunctionService<any> =
         container.get<IFunctionService<any>>(COMMON_TYPES.IFunctionService);
 
-    const ids: string[] = req.query.id ? req.query.id.split(',') : [];
+    const ids: string[] = parseQueryIds(req.query.id);
     const type: string = req.query.type;
 
     const response: ProcessedMessage = await functionService.processMessageAsync({ ids, type }) as ProcessedMessage;
